@@ -1,0 +1,189 @@
+/* --- RESET Y BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #050505; /* Negro más profundo */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(57, 131, 216, 0.253) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 60, 255, 0.226) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(13, 17, 23, 1) 0%, transparent 100%);
+    color: #ffffff;
+    font-family: 'Lexend', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* --- ENVOLTORIO PRINCIPAL --- */
+#main-wrapper {
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el título y el contenedor */
+    width: 100%;
+}
+
+/* --- TÍTULO CENTRADO Y AFUERA --- */
+.main-title {
+      font-family: "Lexend", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    color: #569fff;
+    text-transform: uppercase;
+    text-shadow: 6px 2px 0px rgb(16, 55, 161)
+}
+
+/* --- CONTENEDOR (Imagen a la izq, Form a la der) --- */
+#container {
+    background-color: #161b22;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    max-width: 1000px;
+    width: 90%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- IMAGEN --- */
+#container > img {
+    flex: 1;
+    max-width: 350px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(88, 166, 255, 0.2));
+}
+
+/* --- BLOQUE DE FORMULARIO E INFO --- */
+#coin-container {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+}
+
+#coin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.coin-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-size: 0.85rem;
+    color: #8b949e;
+}
+
+.coin-input, .coinInput {
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    color: white;
+    padding: 12px;
+    border-radius: 10px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.coin-input:focus, .coinInput:focus {
+    border-color: #58a6ff;
+    box-shadow: 0 0 8px rgba(88, 166, 255, 0.3);
+}
+
+#form-btn {
+    background: linear-gradient(135deg, #0453c9 0%, #0d2385 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+#form-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(17, 69, 212, 0.4);
+}
+
+/* --- RESULTADOS --- */
+#coin-info {
+    margin-top: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #58a6ff;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: #c9d1d9;
+}
+
+.price {
+    color: #58a6ff;
+    font-weight: 700;
+}
+
+#coin-info {
+    /* 1. Estado inicial: Totalmente colapsado */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-20px) scale(0.98); /* Aparece un poco desde arriba y más pequeño */
+    margin-top: 0;
+    padding: 0 20px;
+    
+    /* 2. La Transición Mágica */
+    /* Usamos un tiempo más largo (0.8s) y una curva personalizada */
+    transition: 
+        max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.6s ease-out,
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        margin-top 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        padding 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid #1660c8;
+    border-radius: 12px;
+}
+
+/* 3. Estado Activo (Cuando JS añade la clase) */
+#coin-info.show {
+    max-height: 500px; /* Suficiente para el contenido */
+    opacity: 1;
+    transform: translateY(0) scale(1); /* Vuelve a su posición y tamaño natural */
+    margin-top: 30px;
+    padding: 20px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+    #container {
+        flex-direction: column;
+        padding: 30px;
+        text-align: center;
+    }
+    #container > img {
+        max-width: 50%;
+    }
+    .main-title {
+        font-size: 2.2rem;
+    }
+}
