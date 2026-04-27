@@ -5,61 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&family=Playwrite+CU:wght@100..400&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&family=Playwrite+CU:wght@100..400&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap"
+      rel="stylesheet"
+    />
     <title>Cotizador</title>
   </head>
   <body>
-
     <div id="main-wrapper">
-    <h1 class="main-title">Cotizador</h1>
-    <div id="container">
-      <img src="cripto.svg" alt="" width="30%" />
+      <h1 class="main-title">Cotizador</h1>
+      <div id="container">
+        <img src="cripto.svg" alt="" width="30%" />
 
-      <div id="coin-container">
-        <form id="coin-form"> 
-          <div class="coin-input-container">
-            <label for="coin">Elige tu moneda</label>
-            <select class="coin-input" id="coin">
-              <option selected disabled value="">Selecciona una moneda</option>
-              <option value="USD">Dolar</option>
-              <option value="EUR">Euro</option>
-              <option value="ARS">Pesos Argentinos</option>
-              <option value="VES">Bolivares</option>
-            </select>
-          </div>
-
-          <div id="coin-container"> 
+        <div id="coin-container">
+          <form id="coin-form">
             <div class="coin-input-container">
-              <label for="crypto">Elige tu Cryptomoneda</label>
-              <select class="coin-input" id="crypto">
-                <option selected disabled value="">Selecciona una Cryptomoneda</option>
-                <option value="BTC">Bitcoin</option>
-                <option value="ETH">Ethereum</option>
-                <option value="AXS">AXS</option>
-                <option value="BNB">Binance Coin</option>
+              <label for="coin">Elige tu moneda</label>
+              <select class="coin-input" id="coin">
+                <option selected disabled value="">
+                  Selecciona una moneda
+                </option>
+                <option value="USD">Dolar</option>
+                <option value="EUR">Euro</option>
+                <option value="ARS">Pesos Argentinos</option>
+                <option value="VES">Bolivares</option>
               </select>
             </div>
 
-            <div class="coin-input-container">
-              <label for="amount">Monto</label> <input type="number" class="coinInput" id="amount" placeholder="Monto">
-            </div>
-            
-            <button type="submit" id="form-btn">Cotizar</button>
-          </div>
-        </form>
+            <div id="coin-container">
+              <div class="coin-input-container">
+                <label for="crypto">Elige tu Cryptomoneda</label>
+                <select class="coin-input" id="crypto">
+                  <option selected disabled value="">
+                    Selecciona una Cryptomoneda
+                  </option>
+                  <option value="BTC">Bitcoin</option>
+                  <option value="ETH">Ethereum</option>
+                  <option value="AXS">AXS</option>
+                  <option value="BNB">Binance Coin</option>
+                </select>
+              </div>
 
-        <div id="coin-info">
-          <p class="info">El precio es: <span class="price">1400$</span></p>
-          <p class="info">El precio mas alto es: <span class="price">1400$</span></p>
-          <p class="info">El precio mas bajo es: <span class="price">1400$</span></p>
-          <p class="info">Variacion 24H: <span class="price">1400$</span></p>
-          <p class="info">Puede comprar: <span class="price">1.5391 ETH</span></p>
+              <div class="coin-input-container">
+                <label for="amount">Monto</label>
+                <input
+                  type="number"
+                  class="coinInput"
+                  id="amount"
+                  placeholder="Monto"
+                />
+              </div>
+
+              <button type="submit" id="form-btn">Cotizar</button>
+            </div>
+          </form>
+
+          <div id="coin-info">
+            <p class="info">El precio es: <span class="price">1400$</span></p>
+            <p class="info">
+              El precio mas alto es: <span class="price">1400$</span>
+            </p>
+            <p class="info">
+              El precio mas bajo es: <span class="price">1400$</span>
+            </p>
+            <p class="info">Variacion 24H: <span class="price">1400$</span></p>
+            <p class="info">
+              Puede comprar: <span class="price">1.5391 ETH</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
-</div>
+
+<footer>
+  <p>Desarrollado por 
+    <a href="https://github.com/mariangel-ms" target="_blank">
+      <span class="author-name">Mariangel Martinez</span>
+    </a>
+  </p>
+</footer>
 
     <script src="script.js"></script>
   </body>

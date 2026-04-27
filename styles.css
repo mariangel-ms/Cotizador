@@ -14,30 +14,30 @@ body {
     color: #ffffff;
     font-family: 'Lexend', sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     margin: 0;
 }
 
+/* 2. Contenedores Principales */
 #main-wrapper {
-    
+    flex: 1; 
     display: flex;
     flex-direction: column;
     align-items: center; 
+    justify-content: center;
     width: 100%;
+    padding: 20px;
 }
 
-
 .main-title {
-      font-family: "Lexend", sans-serif;
-  font-weight: 900;
-  font-style: normal;
+    font-weight: 900;
     font-size: 3rem;
     margin-bottom: 30px;
     color: #3f8ff8;
     text-transform: uppercase;
-    text-shadow: 6px 2px 0px rgb(16, 55, 161)
+    text-shadow: 6px 2px 0px rgb(16, 55, 161);
 }
 
 #container {
@@ -49,10 +49,9 @@ body {
     align-items: center;
     gap: 50px;
     max-width: 1000px;
-    width: 90%;
+    width: 95%;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 
 #container > img {
     flex: 1;
@@ -67,6 +66,7 @@ body {
     flex-direction: column;
 }
 
+/* 3. Formulario e Inputs */
 #coin-form {
     display: flex;
     flex-direction: column;
@@ -92,6 +92,7 @@ label {
     border-radius: 10px;
     outline: none;
     transition: 0.3s;
+    width: 100%;
 }
 
 .coin-input:focus, .coinInput:focus {
@@ -116,12 +117,26 @@ label {
     box-shadow: 0 5px 15px rgba(17, 69, 212, 0.4);
 }
 
+/* 4. Información de Resultados (Animación) */
 #coin-info {
-    margin-top: 25px;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 20px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-20px) scale(0.98); 
+    margin-top: 0;
+    padding: 0 20px;
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid #1660c8;
     border-radius: 12px;
-    border-left: 4px solid #58a6ff;
+}
+
+#coin-info.show {
+    max-height: 500px; 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    margin-top: 30px;
+    padding: 20px;
 }
 
 .info {
@@ -137,64 +152,7 @@ label {
     font-weight: 700;
 }
 
-#coin-info {
-
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transform: translateY(-20px) scale(0.98); 
-    margin-top: 0;
-    padding: 0 20px;
-    
-
-    transition: 
-        max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.6s ease-out,
-        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-        margin-top 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-        padding 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-
-    background: rgba(255, 255, 255, 0.02);
-    border-left: 3px solid #1660c8;
-    border-radius: 12px;
-}
-
-
-#coin-info.show {
-    max-height: 500px; 
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    margin-top: 30px;
-    padding: 20px;
-}
-
-.loader {
-        width: 55px;
-        height: 50px;
-        border-radius: 50%;
-        position: relative;
-        animation: rotate 1s linear infinite
-      }
-      .loader::before , .loader::after {
-        content: "";
-        box-sizing: border-box;
-        position: absolute;
-        inset: 0px;
-        border-radius: 50%;
-        border: 5px solid #FFF;
-        animation: prixClipFix 2s linear infinite ;
-      }
-      .loader::after{
-        border-color: #0051ff;
-        animation: prixClipFix 2s linear infinite , rotate 0.5s linear infinite reverse;
-        inset: 6px;
-      }
-
-#coin-info .loader {
-    margin: 0 auto;
-    display: block;
-}
-
+/* 5. Loader */
 .loader-wrapper {
     display: flex;
     justify-content: center;
@@ -203,42 +161,96 @@ label {
     padding: 30px 0;
 }
 
-.loader::before {
-    border: 5px solid rgba(255, 255, 255, 0.1); 
+.loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    animation: rotate 1s linear infinite;
 }
 
-      @keyframes rotate {
-        0%   {transform: rotate(0deg)}
-        100%   {transform: rotate(360deg)}
-      }
+.loader::before, .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0px;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    animation: prixClipFix 2s linear infinite;
+}
 
-      @keyframes prixClipFix {
-          0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
-          25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
-          50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
-          75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
-          100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
-      }
+.loader::after {
+    border-color: #0051ff;
+    animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
+    inset: 6px;
+}
 
+/* 6. Footer del Autor */
+footer {
+    width: 100%;
+    padding: 30px 0;
+    text-align: center;
+    background: transparent;
+}
+
+footer p {
+    font-size: 0.9rem;
+    color: #8b949e;
+    letter-spacing: 1px;
+}
+
+.author-name {
+    color: #3f8ff8;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.author-name::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(90deg, transparent, #3f8ff8, transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.author-name:hover::after {
+    transform: scaleX(1);
+}
+
+/* 7. Animaciones Keyframes */
+@keyframes rotate {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+}
+
+@keyframes prixClipFix {
+    0%   {clip-path:polygon(50% 50%,0 0,0 0,0 0,0 0,0 0)}
+    25%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 0,100% 0,100% 0)}
+    50%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,100% 100%,100% 100%)}
+    75%  {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 100%)}
+    100% {clip-path:polygon(50% 50%,0 0,100% 0,100% 100%,0 100%,0 0)}
+}
+
+/* 8. Media Queries */
 @media (max-width: 850px) {
-
     #container > img {
         display: none;
     }
-
     #container {
         flex-direction: column;
         padding: 30px;
-        max-width: 500px; 
+        max-width: 500px;
         margin: 0 auto;
     }
-
-    #coin-container {
-        width: 100%;
-    }
-
     .main-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
         text-align: center;
     }
 }
