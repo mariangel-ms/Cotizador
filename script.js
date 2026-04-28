@@ -35,28 +35,28 @@ form.addEventListener("submit", async (e) => {
     const price = response.DISPLAY[cryptoSelected][coinSelected].PRICE;
     const priceHigh = response.DISPLAY[cryptoSelected][coinSelected].HIGH24HOUR;
     const priceLow = response.DISPLAY[cryptoSelected][coinSelected].LOW24HOUR;
-    const variation = response.DISPLAY[cryptoSelected][coinSelected].CHANGEPCT24HOUR;
+    const variation =
+      response.DISPLAY[cryptoSelected][coinSelected].CHANGEPCT24HOUR;
 
-    if (amountValue === "") {
-      coinInfo.innerHTML = `
-          <p class="info">El precio es: <span class="price">${price}</span></p>
-          <p class="info">El precio mas alto es: <span class="price">${priceHigh}</span></p>
-          <p class="info">El precio mas bajo es: <span class="price">${priceLow}</span></p>
-          <p class="info">Variacion 24H: <span class="price">${variation}%</span></p>
-`;
-    } else {
-      const buy =
-        Number(amountValue) / response.RAW[cryptoSelected][coinSelected].PRICE;
-//El RAW te lo da en numeros, el DISPLAY en string
-        
-      coinInfo.innerHTML = `
-          <p class="info">El precio es: <span class="price">${price}</span></p>
-          <p class="info">El precio mas alto es: <span class="price">${priceHigh}</span></p>
-          <p class="info">El precio mas bajo es: <span class="price">${priceLow}</span></p>
-          <p class="info">Variacion 24H: <span class="price">${variation}%</span></p>
-          <p class="info">Puede comprar: <span class="price">${buy.toFixed(3)} ${cryptoSelected}</span></p>
-`;
+    const buy =
+      Number(amountValue) / response.RAW[cryptoSelected][coinSelected].PRICE;
+    //El RAW te lo da en numeros, el DISPLAY en string
+
+    let buyInfo = "";
+
+    if (amountValue !== "") {
+      const buy = Number(amountValue) / response.RAW[cryptoSelected][coinSelected].PRICE;
+      buyInfo = `<p class="info">Puede comprar: <span class="price">${buy.toFixed(3)} ${cryptoSelected}</span></p>`;
     }
+
+    coinInfo.innerHTML = `
+        <p class="info">El precio es: <span class="price">${price}</span></p>
+        <p class="info">El precio mas alto es: <span class="price">${priceHigh}</span></p>
+        <p class="info">El precio mas bajo es: <span class="price">${priceLow}</span></p>
+        <p class="info">Variación 24H: <span class="price">${variation}%</span></p>
+        ${buyInfo}
+    `;
+    
   } catch (error) {
     console.log(error);
   }
